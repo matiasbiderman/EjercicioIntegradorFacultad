@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    public class Class1
+    public class Facultad
     {
     }
 }
