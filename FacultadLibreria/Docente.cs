@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Docente
+    class Docente : Empleado
     {
+        public string GetNombreCompleto()
+        {
+
+        }
     }
 }

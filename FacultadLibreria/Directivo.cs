@@ -8,5 +8,9 @@ namespace FacultadLibreria
 {
     class Directivo
     {
+        public string GetNombreCompleto()
+        {
+
+        }
     }
 }
