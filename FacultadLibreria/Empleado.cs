@@ -16,18 +16,16 @@ namespace FacultadLibreria
         {
 
         }
-        public bool Equals(object)
+        public bool Equals(object obj)
         {
 
         }
-        public string GetCredencial()
+        public override string GetCredencial()
         {
-
+            return "Legajo " + this._legajo + "-" + GetNombreCompleto() + "Salario $ " + UltimoSalario;
         }
-        public string GetNombreCompleto()
-        {
+        
 
-        }
         public override string ToString()
         {
             return base.ToString();
@@ -73,9 +71,16 @@ namespace FacultadLibreria
 
             }
         }
-        public Salario UltimoSalario()
+        public Salario UltimoSalario
         {
+            get
+            {
 
+            }
+            set
+            {
+
+            }
         }
     }
 }

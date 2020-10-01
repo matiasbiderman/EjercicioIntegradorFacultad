@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Bedel
+    class Bedel : Empleado
     {
         private string _apodo;
-        public string GetNombreCompleto()
+        public override string GetNombreCompleto()
         {
-
+            return "Bedel " + this._apodo;
         }
         public string Apodo
         {

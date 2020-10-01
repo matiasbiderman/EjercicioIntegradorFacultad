@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Directivo
+    class Directivo : Empleado
     {
-        public string GetNombreCompleto()
+        public override string GetNombreCompleto()
         {
-
+            return "Director  " + //falta apellido;
         }
     }
 }

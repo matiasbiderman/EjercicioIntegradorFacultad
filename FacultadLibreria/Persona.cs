@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Persona
+    abstract class Persona
     {
         private string _apellido;
         private string _nombre;
@@ -32,23 +32,24 @@ namespace FacultadLibreria
                 this._nombre = value;
             }
         }
-       /* public int Edad
+       public int Edad
         {
             get
-            { return this._fechaNac; }
-            set
             {
-                this._fechaNac = value;
+                DateTime now = DateTime.Today;
+                int edad = DateTime.Today.Year - this._fechaNac.Year;
+
+                if (DateTime.Today < _fechaNac.AddYears(edad))
+                    return --edad;
+                else
+                    return edad;
             }
-        }*/
-
-        public string GetCredencial()
-        {
-
         }
-        public string GetNombreCompleto()
-        {
 
+        public abstract string GetCredencial();
+        public virtual string GetNombreCompleto()
+        {
+            return "Apellido " + this._apellido + " Nombre " + this._nombre;
         }
     }
 }

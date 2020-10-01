@@ -8,9 +8,9 @@ namespace FacultadLibreria
 {
     class Docente : Empleado
     {
-        public string GetNombreCompleto()
+        public override string GetNombreCompleto()
         {
-
+            return "Docente  " + //falta nombre;
         }
     }
 }

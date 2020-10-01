@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Alumno : Persona
+    public class Alumno : Persona
     {
         private int _codigo;
 
         public override string ToString()
         {
-            return base.ToString();
+            return GetCredencial();
         }
         public int Codigo
         {
@@ -23,14 +23,9 @@ namespace FacultadLibreria
                 this._codigo = value;
             }
         }
-       /* public string Credenciak
+        public override string GetCredencial()
         {
-            get
-            { return this._codigo; }
-            set
-            {
-                this._codigo = value;
-            }
-        }*/
+            return "Código " + this._codigo + "\t" + GetNombreCompleto();
+        }
     }
 }

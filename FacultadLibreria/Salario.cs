@@ -15,7 +15,8 @@ namespace FacultadLibreria
 
         public double GetSalarioNeto()
         {
-
+            return Bruto - Descuentos;
+            
         }
 
         public Salario(double )
@@ -67,8 +68,5 @@ namespace FacultadLibreria
                 this._fecha = value;
             }
         }
-
-
-
     }
 }
