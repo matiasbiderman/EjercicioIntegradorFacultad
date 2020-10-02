@@ -23,28 +23,28 @@ namespace EjercicioFacultad
             const string ModificarEmpleados = "H";
             const string Salir = "S";
 
-            Facultad facultad = new Facultad();
+            Facultad facultad = new Facultad("FCE", 17);
 
             do
             {
                 opcionMenu = ServValidac.PedirStrNoVac("Ingrese opción:\n"
-                    + ListarAlumnos + ": Encender Maquina\n"
-                    + ListarEmpleados + ": Insertar lata\n"
-                    + AltaAlumnos + ": Listar lata\n"
-                    + AltaEmpleados + ": Extraer Lata\n"
-                    + BorrarAlumnos + ": Conocer Balance\n"
-                    + BorrarEmpleados + ": Conocer Stock\n"
-                    + ModificarAlumnos + ": Conocer Stock\n"
-                    + ModificarEmpleados + ": Conocer Stock\n"
+                    + ListarAlumnos + ": Listar Alumnos\n"
+                    + ListarEmpleados + ": Listar Empleados\n"
+                    + AltaAlumnos + ": Alta Alumno\n"
+                    + AltaEmpleados + ": Alta Empleado\n"
+                    + BorrarAlumnos + ": Borrar Alumno\n"
+                    + BorrarEmpleados + ": Borrar Empleados\n"
+                    + ModificarAlumnos + ": Modificar Alumnos\n"
+                    + ModificarEmpleados + ": Modificar Empleados\n"
                     + Salir + ": Salir");
 
                 switch (opcionMenu)
                 {
                     case ListarAlumnos:
-                        Console.WriteLine(facultad.TraerAlumnos());
+                        Console.WriteLine(facultad.ListarAumnos());
                         break;
                     case ListarEmpleados:
-                        Console.WriteLine(facultad.TraerEmpleados());
+                        // Console.WriteLine(facultad.TraerEmpleados());
                         break;
                     case AltaAlumnos:
                         InsertarAlumno(facultad);
@@ -53,7 +53,10 @@ namespace EjercicioFacultad
                         InsertarEmpleado(facultad);
                         break;
                     case BorrarAlumnos:
-                        BorrarAlumno(facultad);
+                        if (facultad.ListarAumnos() != "No se encuentran alumnos listados, ingrese uno")
+                            BorrarAlumno(facultad);
+                        else
+                            Console.WriteLine(facultad.ListarAumnos());
                         break;
                     case BorrarEmpleados:
                         BorrarEmpleado(facultad);
@@ -74,17 +77,25 @@ namespace EjercicioFacultad
             } while (opcionMenu != Salir);
         }
 
-        private static void ListarAlumno(Facultad facultad)
-        {
-            //pasa un alumno
-        }
-        private static void ListarEmpleado(Facultad facultad)
-        {
-            //pasa un alumno
-        }
+
         private static void InsertarAlumno(Facultad facultad)
         {
-            //pasa un alumno
+            string nombre = ServValidac.PedirStrNoVac("Ingrese un nombre de alumno");
+            string apellido = ServValidac.PedirStrNoVac("Ingrese un apellido de alumno");
+            int codigo = ServValidac.PedirInt("Ingrese un codigo de alumno");
+            DateTime fechanac = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del alumno");
+
+            Alumno alumno = new Alumno(nombre, apellido, fechanac, codigo);
+            try
+            {
+                facultad.AgregarAlumno(alumno);
+                Console.WriteLine(alumno.ToString());
+            }
+            catch (ExisteAlumnoException ex)
+            {
+                Console.WriteLine(ex);
+            }
+
         }
         private static void InsertarEmpleado(Facultad facultad)
         {
@@ -92,7 +103,20 @@ namespace EjercicioFacultad
         }
         private static void BorrarAlumno(Facultad facultad)
         {
-            //pasa un codigo de alumno
+
+            Console.WriteLine(facultad.ListarAumnos());
+            int codigo = ServValidac.PedirInt("Ingrese el codigo de alumno a eliminar");
+            try
+            {
+                facultad.EliminarAlumno(codigo);
+                Console.WriteLine(facultad.ListarAumnos());
+            }
+            catch(CodigoAlumnoInvalidoException cd)
+            {
+                Console.WriteLine(cd.Message);
+            }
+
+
         }
         private static void BorrarEmpleado(Facultad facultad)
         {

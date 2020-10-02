@@ -1,0 +1,10 @@
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\obj\Debug\EjercicioFacultad.csprojAssemblyReference.cache
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\obj\Debug\EjercicioFacultad.csproj.CoreCompileInputs.cache
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\bin\Debug\EjercicioFacultad.exe.config
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\bin\Debug\EjercicioFacultad.exe
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\bin\Debug\EjercicioFacultad.pdb
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\bin\Debug\FacultadLibreria.dll
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\bin\Debug\FacultadLibreria.pdb
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\obj\Debug\EjercicioFacultad.csproj.CopyComplete
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\obj\Debug\EjercicioFacultad.exe
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\EjercicioFacultad\obj\Debug\EjercicioFacultad.pdb

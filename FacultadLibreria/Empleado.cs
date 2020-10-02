@@ -12,17 +12,25 @@ namespace FacultadLibreria
         private int _legajo;
         private List<Salario> _salarios;
 
+        public Empleado(string nombre, string apellido, DateTime fechaNac, DateTime fechaIngreso, int legajo) :
+          base(nombre, apellido, fechaNac)
+        {
+            this._fechaingreso = fechaIngreso;
+            this._legajo = legajo;
+            _salarios = new List<Salario>();
+        }
         public void AgregarSalario(Salario salario)
         {
 
         }
-        public bool Equals(object obj)
+      /*  public override bool Equals(object obj)
         {
+            return (obj != null && obj is Empleado && this._legajo == ((Empleado)obj).Legajo);
 
-        }
+        }*/
         public override string GetCredencial()
         {
-            return "Legajo " + this._legajo + "-" + GetNombreCompleto() + "Salario $ " + UltimoSalario;
+            return "Legajo " + this._legajo + "-" + GetNombreCompleto();// + "Salario $ " + UltimoSalario;
         }
         
 
@@ -30,10 +38,10 @@ namespace FacultadLibreria
         {
             return base.ToString();
         }
-        public int Antiguedad()
+      /*  public int Antiguedad()
         {
-
-        }
+            //fecha de ingresso - fecha actual
+        }*/
         public DateTime FechaIngreso
         {
             get
@@ -45,10 +53,10 @@ namespace FacultadLibreria
                 this._fechaingreso = value;
             }
         }
-        public DateTime FechaNacimiento()
+        /*public DateTime FechaNacimiento()
         {
-           
-        }
+           //
+        }*/
         public int Legajo
         {
             get
@@ -60,7 +68,7 @@ namespace FacultadLibreria
                 this._legajo = value;
             }
         }
-        public List<Salario> Salarios
+        /*public List<Salario> Salarios
         {
             get
             {
@@ -81,6 +89,6 @@ namespace FacultadLibreria
             {
 
             }
-        }
+        }*/
     }
 }

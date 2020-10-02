@@ -1,0 +1,6 @@
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\obj\Debug\FacultadLibreria.csprojAssemblyReference.cache
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\obj\Debug\FacultadLibreria.csproj.CoreCompileInputs.cache
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\bin\Debug\FacultadLibreria.dll
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\bin\Debug\FacultadLibreria.pdb
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\obj\Debug\FacultadLibreria.dll
+C:\Users\Mati\Desktop\CAI\202002C\EjercicioIntegradorFacultad\FacultadLibreria\obj\Debug\FacultadLibreria.pdb

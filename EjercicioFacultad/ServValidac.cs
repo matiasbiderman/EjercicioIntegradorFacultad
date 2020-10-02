@@ -22,13 +22,14 @@ namespace EjercicioFacultad
             } while (valor == "");
             return valor;
         }
-        public static double PedirDouble(string mensaje)
+
+        public static int PedirInt(string mensaje)
         {
-            double valor;
+            int valor;
             Console.WriteLine(mensaje);
             do
             {
-                if (!double.TryParse(Console.ReadLine(), out valor))
+                if (!int.TryParse(Console.ReadLine(), out valor))
                 {
                     valor = -1;
                 }
@@ -40,5 +41,16 @@ namespace EjercicioFacultad
 
             return valor;
         }
+
+            public static DateTime PedirFechaNac(string mensaje)
+            {
+                DateTime fecha;
+                do
+                {
+                    Console.WriteLine(mensaje);
+                }
+                while (!DateTime.TryParse(Console.ReadLine(), out fecha));
+                return fecha;
+            }
     }
 }

@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Alumno.cs" />
     <Compile Include="Bedel.cs" />
+    <Compile Include="CodigoAlumnoInvalidoException.cs" />
     <Compile Include="Directivo.cs" />
     <Compile Include="Docente.cs" />
     <Compile Include="Empleado.cs" />
+    <Compile Include="ExisteAlumnoException.cs" />
     <Compile Include="Facultad.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

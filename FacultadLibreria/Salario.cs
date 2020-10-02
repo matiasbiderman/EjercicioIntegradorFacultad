@@ -19,10 +19,10 @@ namespace FacultadLibreria
             
         }
 
-        public Salario(double )
+        /*public Salario(double )
         {
 
-        }
+        }*/
         public double Bruto
         {
             get

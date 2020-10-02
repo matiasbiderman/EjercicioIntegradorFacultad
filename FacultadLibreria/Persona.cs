@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    abstract class Persona
+    abstract public class Persona
     {
         private string _apellido;
         private string _nombre;
         private DateTime _fechaNac;
+
+        public Persona(string nombre, string apellido, DateTime fecha)
+        {
+            this._nombre = nombre;
+            this._apellido = apellido;
+            this._fechaNac = fecha;
+        }
 
         public string Apellido
         {

@@ -9,6 +9,12 @@ namespace FacultadLibreria
     class Bedel : Empleado
     {
         private string _apodo;
+
+        public Bedel(string nombre, string apodo, string apellido, DateTime fechaNac, DateTime fechaIngreso, int legajo) :
+           base(nombre, apellido, fechaNac, fechaIngreso, legajo)
+        {
+            this._apodo = apodo;
+        }
         public override string GetNombreCompleto()
         {
             return "Bedel " + this._apodo;

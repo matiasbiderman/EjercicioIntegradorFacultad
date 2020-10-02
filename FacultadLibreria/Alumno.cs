@@ -9,7 +9,11 @@ namespace FacultadLibreria
     public class Alumno : Persona
     {
         private int _codigo;
-
+        public Alumno(string nombre, string apellido, DateTime fechaNac, int codigo) : base(nombre, apellido, fechaNac)
+        {
+            this._codigo = codigo;
+        }
+        
         public override string ToString()
         {
             return GetCredencial();
@@ -22,6 +26,12 @@ namespace FacultadLibreria
             {
                 this._codigo = value;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (obj != null && obj is Alumno && this._codigo == ((Alumno)obj).Codigo);
+
         }
         public override string GetCredencial()
         {
