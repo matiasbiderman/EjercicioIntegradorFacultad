@@ -139,7 +139,7 @@ namespace EjercicioFacultad
                + Salir + ": Salir\n");
 
             Console.WriteLine(facultad.ListarAumnos());
-            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a eliminar");
+            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a modificar");
             
             facultad.ModificarAlumno(codigoAlumno, opcionMenuDatoAlumno);
 
