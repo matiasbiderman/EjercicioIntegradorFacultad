@@ -82,6 +82,15 @@ namespace FacultadLibreria
         {
 
         }
+        public void ModificarAlumno(int codigo, string opcion)
+        {
+            Alumno alumno = getAlumnosByCodigo(codigo);
+            
+        }
+        public Alumno getAlumnosByCodigo(int codigo)
+        {
+            return (Alumno)_alumnos.Where(l => l.Codigo == codigo);
+        }
         /*public void ModificarEmpleado(Empleado empleado)
         {
 

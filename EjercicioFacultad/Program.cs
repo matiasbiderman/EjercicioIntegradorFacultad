@@ -93,7 +93,7 @@ namespace EjercicioFacultad
             }
             catch (ExisteAlumnoException ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine(ex.Message);
             }
 
         }
@@ -111,12 +111,10 @@ namespace EjercicioFacultad
                 facultad.EliminarAlumno(codigo);
                 Console.WriteLine(facultad.ListarAumnos());
             }
-            catch(CodigoAlumnoInvalidoException cd)
+            catch (CodigoAlumnoInvalidoException cd)
             {
                 Console.WriteLine(cd.Message);
             }
-
-
         }
         private static void BorrarEmpleado(Facultad facultad)
         {
@@ -124,6 +122,27 @@ namespace EjercicioFacultad
         }
         private static void ModificarAlumno(Facultad facultad)
         {
+            string opcionMenuDatoAlumno;
+
+            const string Nombre = "A";
+            const string Apellido = "B";
+            const string FechaNac = "C";
+            const string Codigo = "D";
+            const string Salir = "S";
+
+
+            opcionMenuDatoAlumno = ServValidac.PedirStrNoVac("Elija el dato a modificar del alumno:\n"
+               + Nombre + ": Nombre alumno\n"
+               + Apellido + ": Apellido alumno\n"
+               + FechaNac + ": FechaNac alumno\n"
+               + Codigo + ": Codigo alumno\n"
+               + Salir + ": Salir\n");
+
+            Console.WriteLine(facultad.ListarAumnos());
+            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a eliminar");
+            
+            facultad.ModificarAlumno(codigoAlumno, opcionMenuDatoAlumno);
+
 
         }
         private static void ModificarEmpleado(Facultad facultad)
