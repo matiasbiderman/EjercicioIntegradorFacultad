@@ -62,7 +62,10 @@ namespace EjercicioFacultad
                         BorrarEmpleado(facultad);
                         break;
                     case ModificarAlumnos:
-                        ModificarAlumno(facultad);
+                        if (facultad.ListarAumnos() != "No se encuentran alumnos listados, ingrese uno")
+                            ModificarAlumno(facultad);
+                        else
+                            Console.WriteLine(facultad.ListarAumnos());
                         break;
                     case ModificarEmpleados:
                         ModificarEmpleado(facultad);
@@ -76,7 +79,6 @@ namespace EjercicioFacultad
 
             } while (opcionMenu != Salir);
         }
-
 
         private static void InsertarAlumno(Facultad facultad)
         {
@@ -93,7 +95,11 @@ namespace EjercicioFacultad
             }
             catch (ExisteAlumnoException ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message); //no lo va a encontrar por ya existir
+            }
+            catch (CodigoAlumnoInvalidoException cd)
+            {
+                Console.WriteLine(cd.Message); //no lo va a encontrar ya que esta duplicado el codigo
             }
 
         }
@@ -122,26 +128,18 @@ namespace EjercicioFacultad
         }
         private static void ModificarAlumno(Facultad facultad)
         {
-            string opcionMenuDatoAlumno;
-
-            const string Nombre = "A";
-            const string Apellido = "B";
-            const string FechaNac = "C";
-            const string Codigo = "D";
-            const string Salir = "S";
-
-
-            opcionMenuDatoAlumno = ServValidac.PedirStrNoVac("Elija el dato a modificar del alumno:\n"
-               + Nombre + ": Nombre alumno\n"
-               + Apellido + ": Apellido alumno\n"
-               + FechaNac + ": FechaNac alumno\n"
-               + Codigo + ": Codigo alumno\n"
-               + Salir + ": Salir\n");
-
-            Console.WriteLine(facultad.ListarAumnos());
-            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a modificar");
             
-            facultad.ModificarAlumno(codigoAlumno, opcionMenuDatoAlumno);
+            Console.WriteLine("Los alumnos disponibles para su modificacion son: \n" + facultad.ListarAumnos());
+            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a modificar");
+            Console.WriteLine("El alumno a modificar es: \n" + facultad.getAlumnosByCodigo(codigoAlumno));
+
+            string nombre = ServValidac.PedirStrNoVac("Ingrese un nuevo nombre de alumno");
+            string apellido = ServValidac.PedirStrNoVac("Ingrese un nuevo apellido de alumno");
+            DateTime fechanac = ServValidac.PedirFechaNac("Ingrese nueva fecha de nacimiento del alumno");
+
+            Alumno alumno = new Alumno(nombre, apellido, fechanac, codigoAlumno);
+            facultad.ModificarAlumno(alumno);
+            Console.WriteLine("El alumno quedo modificado de la siguiente manera: \n" + facultad.getAlumnosByCodigo(codigoAlumno));
 
 
         }

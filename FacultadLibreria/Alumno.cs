@@ -30,7 +30,7 @@ namespace FacultadLibreria
 
         public override bool Equals(object obj)
         {
-            return (obj != null && obj is Alumno && this._codigo == ((Alumno)obj).Codigo);
+            return obj != null && obj is Alumno && this._codigo == ((Alumno)obj).Codigo;
 
         }
         public override string GetCredencial()

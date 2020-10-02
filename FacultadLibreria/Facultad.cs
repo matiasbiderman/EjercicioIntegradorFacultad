@@ -45,13 +45,15 @@ namespace FacultadLibreria
         {
             if (alumno.Equals(alumno))
             {
+                if (getAlumnoByCodigoDuplicado(alumno.Codigo))
+                    throw new CodigoAlumnoInvalidoException();
+                else
                 _alumnos.Add(alumno);
             }
             else
             {
                 throw new ExisteAlumnoException();
             }
-
         }
         /* public void AgregarEmpleado(Empleado empleado)
          {
@@ -82,15 +84,52 @@ namespace FacultadLibreria
         {
 
         }
-        public void ModificarAlumno(int codigo, string opcion)
+        public void ModificarAlumno(Alumno alumnonuevo)
         {
-            Alumno alumno = getAlumnosByCodigo(codigo);
             
+            for (int i = 0; i < _alumnos.Count; i++)
+            {
+                if (_alumnos[i].Codigo == alumnonuevo.Codigo)
+                {
+                    _alumnos[i] = alumnonuevo;
+                }
+            }
         }
-        public Alumno getAlumnosByCodigo(int codigo)
+        public string getAlumnosByCodigo(int codigo)
         {
-            return (Alumno)_alumnos.Where(l => l.Codigo == codigo);
+            string lista = "";
+            foreach (Alumno alumno in _alumnos)
+            {
+                if (codigo == alumno.Codigo)
+                {
+                    lista += alumno.ToString() + "\n";
+                }
+            }
+            if (lista == "")
+            {
+                lista = "No se encuentran alumnos listados, ingrese uno";
+            }
+            return lista;
         }
+
+        public bool getAlumnoByCodigoDuplicado(int codigo)
+        {
+            bool encuentra = false;
+            foreach (Alumno alumno in _alumnos)
+            {
+                if (codigo == alumno.Codigo)
+                {
+                    encuentra = true;
+                }
+            }
+            if (encuentra)
+            {
+                return encuentra;
+            }
+            return encuentra;
+        }
+
+        
         /*public void ModificarEmpleado(Empleado empleado)
         {
 
@@ -100,6 +139,7 @@ namespace FacultadLibreria
         {
             return _alumnos;
         }
+
         public string ListarAumnos()
         {
             string lista = "";
@@ -113,6 +153,7 @@ namespace FacultadLibreria
             }
             return lista;
         }
+
 
         /*
         public List<Empleado> TraerEmpleados()

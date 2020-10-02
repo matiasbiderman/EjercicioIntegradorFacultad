@@ -39,7 +39,16 @@ namespace FacultadLibreria
                 this._nombre = value;
             }
         }
-       public int Edad
+        public DateTime FechaNac
+        {
+            get
+            { return this._fechaNac; }
+            set
+            {
+                this._fechaNac = value;
+            }
+        }
+        public int Edad
         {
             get
             {
