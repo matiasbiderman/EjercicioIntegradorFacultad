@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Salario
+    public class Salario
     {
         private double _bruto;
         private string _codigoTransferencia;
         private double _descuentos;
         private DateTime _fecha;
 
+        public Salario(double bruto, string transferencia, double descuentos, DateTime fechasalario)
+        {
+            this._bruto = bruto;
+            this._descuentos = 0.17 * bruto;
+            this._codigoTransferencia = _fecha.Ticks.ToString();
+            this._fecha = DateTime.Now;
+        }
         public double GetSalarioNeto()
         {
             return Bruto - Descuentos;
             
         }
 
-        /*public Salario(double )
-        {
-
-        }*/
         public double Bruto
         {
             get

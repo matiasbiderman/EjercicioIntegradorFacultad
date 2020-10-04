@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    abstract class Empleado : Persona
+    abstract public class Empleado : Persona
     {
         private DateTime _fechaingreso;
         private int _legajo;
@@ -21,27 +21,26 @@ namespace FacultadLibreria
         }
         public void AgregarSalario(Salario salario)
         {
+            Salarios.Add(salario);
+        }
+      public override bool Equals(object obj)
+        {
+            return obj != null && obj is Empleado && this._legajo == ((Empleado)obj).Legajo;
 
         }
-      /*  public override bool Equals(object obj)
-        {
-            return (obj != null && obj is Empleado && this._legajo == ((Empleado)obj).Legajo);
-
-        }*/
         public override string GetCredencial()
         {
-            return "Legajo " + this._legajo + "-" + GetNombreCompleto();// + "Salario $ " + UltimoSalario;
+            return "Legajo " + this._legajo + "-" + GetNombreCompleto();// + "Salario $ " + UltimoSalario().GetSalarioNeto();
         }
-        
-
         public override string ToString()
         {
-            return base.ToString();
+            return GetCredencial();
         }
-      /*  public int Antiguedad()
+        public int Antiguedad()
         {
-            //fecha de ingresso - fecha actual
-        }*/
+            int antiguedad = DateTime.Now.Year - this._fechaingreso.Year;
+            return antiguedad;
+        }
         public DateTime FechaIngreso
         {
             get
@@ -53,10 +52,17 @@ namespace FacultadLibreria
                 this._fechaingreso = value;
             }
         }
-        /*public DateTime FechaNacimiento()
+        public DateTime FechaNacimiento
         {
-           //
-        }*/
+            get
+            {
+                return this.FechaNac;
+            }
+            set
+            {
+                this.FechaNac = value;
+            }
+        }
         public int Legajo
         {
             get
@@ -68,27 +74,17 @@ namespace FacultadLibreria
                 this._legajo = value;
             }
         }
-        /*public List<Salario> Salarios
+        public List<Salario> Salarios
         {
             get
             {
-
+                return _salarios;
             }
-            set
-            {
-
-            }
+           
         }
-        public Salario UltimoSalario
+        public Salario UltimoSalario()
         {
-            get
-            {
-
-            }
-            set
-            {
-
-            }
-        }*/
+            return Salarios.Last();
+        }
     }
 }

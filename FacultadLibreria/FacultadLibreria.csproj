@@ -47,11 +47,15 @@
     <Compile Include="Directivo.cs" />
     <Compile Include="Docente.cs" />
     <Compile Include="Empleado.cs" />
+    <Compile Include="EmpleadoExistenteException.cs" />
     <Compile Include="ExisteAlumnoException.cs" />
     <Compile Include="Facultad.cs" />
+    <Compile Include="LegajoInvalidoException.cs" />
+    <Compile Include="MenorDeEdadException.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Salario.cs" />
+    <Compile Include="TipoEmpleado.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Bedel : Empleado
+    public class Bedel : Empleado
     {
         private string _apodo;
 

@@ -35,7 +35,7 @@ namespace FacultadLibreria
         }
         public override string GetCredencial()
         {
-            return "Código " + this._codigo + "\t" + GetNombreCompleto();
+            return "Código " + this._codigo + "\t" + GetNombreCompleto() + "\tEdad " + Edad;
         }
     }
 }

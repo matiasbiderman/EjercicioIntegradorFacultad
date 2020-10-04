@@ -46,23 +46,51 @@ namespace FacultadLibreria
             if (alumno.Equals(alumno))
             {
                 if (getAlumnoByCodigoDuplicado(alumno.Codigo))
+                {
                     throw new CodigoAlumnoInvalidoException();
+                }
+                else if (alumno.Edad < 18)
+                {
+                    throw new MenorDeEdadException();
+
+                }
                 else
-                _alumnos.Add(alumno);
+                {
+                    _alumnos.Add(alumno);
+                }
             }
             else
             {
                 throw new ExisteAlumnoException();
             }
         }
-        /* public void AgregarEmpleado(Empleado empleado)
+        public void AgregarEmpleado(Empleado empleado)
          {
+            if (empleado.Equals(empleado))
+            {
 
-         }*/
+                if (this._empleados.SingleOrDefault(x => x.Legajo == empleado.Legajo) != null)
+                {
+                    throw new LegajoInvalidoException();
+                }
+                else if (empleado.Edad < 18)
+                {
+                    throw new MenorDeEdadException();
+                }
+                else
+                {
+                    _empleados.Add(empleado);
+                }
+            }
+            else
+            {
+                throw new ExisteAlumnoException();
+            }
+         }
         public void EliminarAlumno(int codigo)
         {
             int indice = -1;
-            
+
             foreach (Alumno alu in _alumnos)
             {
 
@@ -82,17 +110,27 @@ namespace FacultadLibreria
         }
         public void EliminarEmpleado(int legajo)
         {
-
+            Empleado empleado = TraerEmpleadoPorLegajo(legajo);
+            if (empleado == null)
+                throw new Exception("No se pudo borrar el empleado");
+            else
+            _empleados.Remove(empleado);
         }
         public void ModificarAlumno(Alumno alumnonuevo)
         {
-            
-            for (int i = 0; i < _alumnos.Count; i++)
+            if (alumnonuevo.Edad >= 18)
             {
-                if (_alumnos[i].Codigo == alumnonuevo.Codigo)
+                for (int i = 0; i < _alumnos.Count; i++)
                 {
-                    _alumnos[i] = alumnonuevo;
+                    if (_alumnos[i].Codigo == alumnonuevo.Codigo)
+                    {
+                        _alumnos[i] = alumnonuevo;
+                    }
                 }
+            }
+            else
+            {
+                throw new MenorDeEdadException();
             }
         }
         public string getAlumnosByCodigo(int codigo)
@@ -129,7 +167,7 @@ namespace FacultadLibreria
             return encuentra;
         }
 
-        
+
         /*public void ModificarEmpleado(Empleado empleado)
         {
 
@@ -147,13 +185,25 @@ namespace FacultadLibreria
             {
                 lista += alumno.ToString() + "\n";
             }
-            if(lista == "")
+            if (lista == "")
             {
-                lista = "No se encuentran alumnos listados, ingrese uno";
+                lista = "No hay alumnos disponibles, ingrese uno";
             }
             return lista;
         }
-
+        public string ListarEmpleados()
+        {
+            string lista = "";
+            foreach (Empleado empleado in _empleados)
+            {
+                lista += empleado.ToString() + "\n";
+            }
+            if (lista == "")
+            {
+                lista = "No hay empleados disponibles, ingrese uno";
+            }
+            return lista;
+        }
 
         /*
         public List<Empleado> TraerEmpleados()
@@ -163,10 +213,15 @@ namespace FacultadLibreria
         public List<Empleado> TraerEmpleadosPorNombre(string nombre)
         {
 
-        }
+        }*/
         public Empleado TraerEmpleadoPorLegajo(int legajo)
         {
-
-        }*/
+            foreach (Empleado e in _empleados)
+            {
+                if (legajo == e.Legajo)
+                    return e;
+            }
+            return null;
+        }
     }
 }

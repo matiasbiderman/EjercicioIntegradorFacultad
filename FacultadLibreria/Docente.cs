@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacultadLibreria
 {
-    class Docente : Empleado
+    public class Docente : Empleado
     {
         public Docente(string nombre, string apellido, DateTime fechaNac, DateTime fechaIngreso, int legajo) :
             base(nombre, apellido, fechaNac, fechaIngreso, legajo)
@@ -15,7 +15,7 @@ namespace FacultadLibreria
         }
         public override string GetNombreCompleto()
         {
-            return "Docente  ";// falta nombre;
+            return "Docente  " + Nombre;// falta nombre;
         }
     }
 }

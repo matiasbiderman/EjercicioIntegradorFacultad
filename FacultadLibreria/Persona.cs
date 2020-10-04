@@ -52,13 +52,8 @@ namespace FacultadLibreria
         {
             get
             {
-                DateTime now = DateTime.Today;
-                int edad = DateTime.Today.Year - this._fechaNac.Year;
-
-                if (DateTime.Today < _fechaNac.AddYears(edad))
-                    return --edad;
-                else
-                    return edad;
+                int edad = DateTime.Now.Year - this._fechaNac.Year;
+                return edad;
             }
         }
 
