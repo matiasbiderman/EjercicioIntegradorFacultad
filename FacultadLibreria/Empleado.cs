@@ -20,7 +20,7 @@ namespace FacultadLibreria
             this._legajo = legajo;
             _salarios = new List<Salario>();
             this._ultimoSalario = new Salario(bruto);
-            
+            AgregarSalario(this._ultimoSalario);
         }
         public void AgregarSalario(Salario salario)
         {
@@ -30,11 +30,10 @@ namespace FacultadLibreria
       public override bool Equals(object obj)
         {
             return obj != null && obj is Empleado && this._legajo == ((Empleado)obj).Legajo;
-
         }
         public override string GetCredencial()
         {
-            return "Legajo " + this._legajo + "-" + GetNombreCompleto() + "Salario $ " + UltimoSalario().GetSalarioNeto();
+            return "Legajo " + this._legajo + "\t" + GetNombreCompleto() + "\t"+ "Salario $ " + UltimoSalario().GetSalarioNeto();
         }
         public override string ToString()
         {
@@ -42,7 +41,8 @@ namespace FacultadLibreria
         }
         public int Antiguedad()
         {
-            int antiguedad = DateTime.Now.Year - this._fechaingreso.Year;
+            int antiguedad = (DateTime.Now - this._fechaingreso).Days / 365;
+
             return antiguedad;
         }
         public DateTime FechaIngreso

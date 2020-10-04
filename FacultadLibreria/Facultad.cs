@@ -65,7 +65,7 @@ namespace FacultadLibreria
             }
         }
         public void AgregarEmpleado(Empleado empleado)
-         {
+        {
             if (empleado.Equals(empleado))
             {
 
@@ -77,6 +77,10 @@ namespace FacultadLibreria
                 {
                     throw new MenorDeEdadException();
                 }
+                else if (empleado.Antiguedad() < 0)
+                {
+                    throw new Exception("El empleado todavia no ha ingresado a la organizacion"); //no esta pasando por aca
+                }
                 else
                 {
                     _empleados.Add(empleado);
@@ -86,14 +90,13 @@ namespace FacultadLibreria
             {
                 throw new ExisteAlumnoException();
             }
-         }
+        }
         public void EliminarAlumno(int codigo)
         {
             int indice = -1;
 
             foreach (Alumno alu in _alumnos)
             {
-
                 if (codigo == alu.Codigo)
                 {
                     indice = _alumnos.IndexOf(alu);
@@ -114,7 +117,7 @@ namespace FacultadLibreria
             if (empleado == null)
                 throw new Exception("No se pudo borrar el empleado");
             else
-            _empleados.Remove(empleado);
+                _empleados.Remove(empleado);
         }
         public void ModificarAlumno(Alumno alumnonuevo)
         {
@@ -168,11 +171,35 @@ namespace FacultadLibreria
         }
 
 
-        /*public void ModificarEmpleado(Empleado empleado)
+        public void ModificarEmpleado(Empleado empleadonuevo)
         {
+            bool encuentra = false;
+            if (empleadonuevo.Edad >= 18)
+            {
+                if(empleadonuevo.Antiguedad() >= 0)
+                {
+                    for (int i = 0; i < _empleados.Count; i++)
+                    {
+                        if (_empleados[i].Legajo == empleadonuevo.Legajo)
+                        {
+                            encuentra = true;
+                            _empleados[i] = empleadonuevo;
+                        }
+                    }
+                }
+                else
+                {
+                    throw new Exception("El empleado no puede tener antiguedad negativa");
+                }
+            }
+            else
+            {
+                throw new MenorDeEdadException();
+            }
+
 
         }
-       */
+       
         public List<Alumno> TraerAlumnos()
         {
             return _alumnos;
@@ -187,7 +214,7 @@ namespace FacultadLibreria
             }
             if (lista == "")
             {
-                lista = "No hay alumnos disponibles, ingrese uno";
+                throw new Exception("No hay alumnos disponibles, ingrese uno");
             }
             return lista;
         }
@@ -200,7 +227,7 @@ namespace FacultadLibreria
             }
             if (lista == "")
             {
-                lista = "No hay empleados disponibles, ingrese uno";
+                throw new Exception("No hay empleados disponibles, ingrese uno");
             }
             return lista;
         }

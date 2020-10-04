@@ -41,10 +41,24 @@ namespace EjercicioFacultad
                 switch (opcionMenu)
                 {
                     case ListarAlumnos:
-                        Console.WriteLine(facultad.ListarAumnos());
+                        try
+                        {
+                            Console.WriteLine(facultad.ListarAumnos());
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case ListarEmpleados:
-                        Console.WriteLine(facultad.ListarEmpleados());
+                        try
+                        {
+                            Console.WriteLine(facultad.ListarEmpleados());
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
                     case AltaAlumnos:
                         InsertarAlumno(facultad);
@@ -53,19 +67,13 @@ namespace EjercicioFacultad
                         InsertarEmpleado(facultad);
                         break;
                     case BorrarAlumnos:
-                        if (facultad.ListarAumnos() != "No se encuentran alumnos listados, ingrese uno")
-                            BorrarAlumno(facultad);
-                        else
-                            Console.WriteLine(facultad.ListarAumnos());
+                        BorrarAlumno(facultad);
                         break;
                     case BorrarEmpleados:
                         BorrarEmpleado(facultad);
                         break;
                     case ModificarAlumnos:
-                        if (facultad.ListarAumnos() != "No se encuentran alumnos listados, ingrese uno")
-                            ModificarAlumno(facultad);
-                        else
-                            Console.WriteLine(facultad.ListarAumnos());
+                        ModificarAlumno(facultad);
                         break;
                     case ModificarEmpleados:
                         ModificarEmpleado(facultad);
@@ -105,7 +113,6 @@ namespace EjercicioFacultad
             {
                 Console.WriteLine(ed.Message);
             }
-
         }
         private static void InsertarEmpleado(Facultad facultad)
         {
@@ -123,54 +130,67 @@ namespace EjercicioFacultad
                 }
                 if (opcionMenu == (int)TipoEmpleado.Bedel)
                 {
-                    string apodoBedel = ServValidac.PedirStrNoVac("Ingrese apodo del Bedel");
-                    string nombreBedel = ServValidac.PedirStrNoVac("Ingrese nombre del Bedel");
-                    int legajoBedel = ServValidac.PedirInt("Ingrese legajo del Bedel");
-                    string apellidoBedel = ServValidac.PedirStrNoVac("Ingrese apellido del Bedel");
-                    DateTime fechanacBedel = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del Bedel");
-                    DateTime fechaIngresoBedel = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del Bedel");
-                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
-                    Empleado empleado = new Bedel(nombreBedel, apodoBedel, apellidoBedel, fechanacBedel, fechaIngresoBedel, legajoBedel, bruto);
+                    Empleado empleado = ValidarEmpleado(opcionMenu);
                     ValidoExcepciones(facultad, empleado);
                 }
                 else if (opcionMenu == (int)TipoEmpleado.Docente)
                 {
-                    string nombreDocente = ServValidac.PedirStrNoVac("Ingrese nombre del docente");
-                    string apellidoDocente = ServValidac.PedirStrNoVac("Ingrese apellido del docente");
-                    DateTime fechanacDocente = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del docente");
-                    DateTime fechaIngresoDocente = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del docente");
-                    int legajoDocente = ServValidac.PedirInt("Ingrese legajo del docente");
-                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
-                    Empleado empleado = new Docente(nombreDocente, apellidoDocente, fechanacDocente, fechaIngresoDocente, legajoDocente, bruto);
+                    Empleado empleado = ValidarEmpleado(opcionMenu);
                     ValidoExcepciones(facultad, empleado);
                 }
                 else if (opcionMenu == (int)TipoEmpleado.Directivo)
                 {
-                    string apellidoDirectivo = ServValidac.PedirStrNoVac("Ingrese apellido del directivo");
-                    string nombreDirectivo = ServValidac.PedirStrNoVac("Ingrese nombre del Directivo");
-                    DateTime fechanacDirectivo = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del Directivo");
-                    DateTime fechaIngresoDirectivo = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del Directivo");
-                    int legajoDirectivo = ServValidac.PedirInt("Ingrese legajo del Directivo");
-                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
-                    Empleado empleado = new Directivo(nombreDirectivo, apellidoDirectivo, fechanacDirectivo, fechaIngresoDirectivo, legajoDirectivo, bruto);
+                    Empleado empleado = ValidarEmpleado(opcionMenu);
                     ValidoExcepciones(facultad, empleado);
-
                 }
             } while (opcionMenu != (int)TipoEmpleado.Bedel && opcionMenu != (int)TipoEmpleado.Docente && opcionMenu != (int)TipoEmpleado.Directivo);
+        }
+
+        private static Empleado ValidarEmpleado(int opcionMenu)
+        {
+            Empleado empleado = null;
+            string apellido = ServValidac.PedirStrNoVac("Ingrese apellido ");
+            string nombre = ServValidac.PedirStrNoVac("Ingrese nombre");
+            DateTime fechanac = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento");
+            DateTime fechaIngreso = ServValidac.PedirFechaNac("Ingrese fecha de ingreso");
+            int legajo = ServValidac.PedirInt("Ingrese legajo");
+            double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
+
+            if (opcionMenu == (int)TipoEmpleado.Directivo)
+            {
+                empleado = new Directivo(nombre, apellido, fechanac, fechaIngreso, legajo, bruto);
+                //ValidoExcepciones(facultad, empleado);
+            }
+            else if (opcionMenu == (int)TipoEmpleado.Docente)
+            {
+                empleado = new Docente(nombre, apellido, fechanac, fechaIngreso, legajo, bruto);
+                //ValidoExcepciones(facultad, empleado);
+            }
+            else if (opcionMenu == (int)TipoEmpleado.Bedel)
+            {
+                string apodo = ServValidac.PedirStrNoVac("Ingrese apodo");
+                empleado = new Bedel(nombre, apodo, apellido, fechanac, fechaIngreso, legajo, bruto);
+                //ValidoExcepciones(facultad, empleado);
+            }
+            return empleado;
         }
         private static void BorrarAlumno(Facultad facultad)
         {
 
-            Console.WriteLine(facultad.ListarAumnos());
-            int codigo = ServValidac.PedirInt("Ingrese el codigo de alumno a eliminar");
             try
             {
+                Console.WriteLine(facultad.ListarAumnos());
+                int codigo = ServValidac.PedirInt("Ingrese el codigo de alumno a eliminar");
                 facultad.EliminarAlumno(codigo);
                 Console.WriteLine(facultad.ListarAumnos());
             }
             catch (CodigoAlumnoInvalidoException cd)
             {
                 Console.WriteLine(cd.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         private static void BorrarEmpleado(Facultad facultad)
@@ -207,23 +227,27 @@ namespace EjercicioFacultad
             }
             catch (EmpleadoExistenteException ee)
             {
-                Console.WriteLine(ee.Message);   
+                Console.WriteLine(ee.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
         private static void ModificarAlumno(Facultad facultad)
         {
-
-            Console.WriteLine("Los alumnos disponibles para su modificacion son: \n" + facultad.ListarAumnos());
-            int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a modificar");
-            Console.WriteLine("El alumno a modificar es: \n" + facultad.getAlumnosByCodigo(codigoAlumno));
-
-            string nombre = ServValidac.PedirStrNoVac("Ingrese un nuevo nombre de alumno");
-            string apellido = ServValidac.PedirStrNoVac("Ingrese un nuevo apellido de alumno");
-            DateTime fechanac = ServValidac.PedirFechaNac("Ingrese nueva fecha de nacimiento del alumno");
-
-            Alumno alumno = new Alumno(nombre, apellido, fechanac, codigoAlumno);
             try
             {
+                Console.WriteLine("Los alumnos disponibles para su modificacion son: \n" + facultad.ListarAumnos());
+                int codigoAlumno = ServValidac.PedirInt("Ingrese el codigo de alumno a modificar");
+                Console.WriteLine("El alumno a modificar es: \n" + facultad.getAlumnosByCodigo(codigoAlumno));
+
+                string nombre = ServValidac.PedirStrNoVac("Ingrese un nuevo nombre de alumno");
+                string apellido = ServValidac.PedirStrNoVac("Ingrese un nuevo apellido de alumno");
+                DateTime fechanac = ServValidac.PedirFechaNac("Ingrese nueva fecha de nacimiento del alumno");
+
+                Alumno alumno = new Alumno(nombre, apellido, fechanac, codigoAlumno);
+
                 facultad.ModificarAlumno(alumno);
                 Console.WriteLine("El alumno quedo modificado de la siguiente manera: \n" + facultad.getAlumnosByCodigo(codigoAlumno));
             }
@@ -231,9 +255,51 @@ namespace EjercicioFacultad
             {
                 Console.WriteLine(ed.Message);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         private static void ModificarEmpleado(Facultad facultad)
         {
+            try
+            {
+                Console.WriteLine("Los empleados disponibles para su modificacion son: \n" + facultad.ListarEmpleados());
+                int legajo = ServValidac.PedirInt("Ingrese el codigo de empleado a modificar");
+                Console.WriteLine("El alumno a modificar es: \n" + facultad.TraerEmpleadoPorLegajo(legajo));
+                Empleado empleadoAModificar = facultad.TraerEmpleadoPorLegajo(legajo);
+                string apellido = ServValidac.PedirStrNoVac("Ingrese apellido ");
+                string nombre = ServValidac.PedirStrNoVac("Ingrese nombre");
+                DateTime fechanac = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento");
+                DateTime fechaIngreso = ServValidac.PedirFechaNac("Ingrese fecha de ingreso");
+                double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
+
+                Empleado empleadoNuevo = null;
+                if (empleadoAModificar is Bedel)
+                {
+                    string apodo = ServValidac.PedirStrNoVac("Ingrese apodo");
+                    empleadoNuevo = new Bedel(nombre, apodo, apellido, fechanac, fechaIngreso, legajo, bruto);
+                }
+                else if (empleadoAModificar is Docente)
+                {
+                    empleadoNuevo = new Docente(nombre, apellido, fechanac, fechaIngreso, legajo, bruto);
+                }
+                else if (empleadoAModificar is Directivo)
+                {
+                    empleadoNuevo = new Directivo(nombre, apellido, fechanac, fechaIngreso, legajo, bruto);
+                }
+                
+                facultad.ModificarEmpleado(empleadoNuevo);
+                Console.WriteLine("El empleado quedo modificado de la siguiente manera: \n" + facultad.TraerEmpleadoPorLegajo(legajo));
+            }
+            catch (MenorDeEdadException ed)
+            {
+                Console.WriteLine(ed.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
