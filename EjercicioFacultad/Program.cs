@@ -129,7 +129,8 @@ namespace EjercicioFacultad
                     string apellidoBedel = ServValidac.PedirStrNoVac("Ingrese apellido del Bedel");
                     DateTime fechanacBedel = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del Bedel");
                     DateTime fechaIngresoBedel = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del Bedel");
-                    Empleado empleado = new Bedel(nombreBedel, apodoBedel, apellidoBedel, fechanacBedel, fechaIngresoBedel, legajoBedel);
+                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
+                    Empleado empleado = new Bedel(nombreBedel, apodoBedel, apellidoBedel, fechanacBedel, fechaIngresoBedel, legajoBedel, bruto);
                     ValidoExcepciones(facultad, empleado);
                 }
                 else if (opcionMenu == (int)TipoEmpleado.Docente)
@@ -139,7 +140,8 @@ namespace EjercicioFacultad
                     DateTime fechanacDocente = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del docente");
                     DateTime fechaIngresoDocente = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del docente");
                     int legajoDocente = ServValidac.PedirInt("Ingrese legajo del docente");
-                    Empleado empleado = new Docente(nombreDocente, apellidoDocente, fechanacDocente, fechaIngresoDocente, legajoDocente);
+                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
+                    Empleado empleado = new Docente(nombreDocente, apellidoDocente, fechanacDocente, fechaIngresoDocente, legajoDocente, bruto);
                     ValidoExcepciones(facultad, empleado);
                 }
                 else if (opcionMenu == (int)TipoEmpleado.Directivo)
@@ -149,7 +151,8 @@ namespace EjercicioFacultad
                     DateTime fechanacDirectivo = ServValidac.PedirFechaNac("Ingrese fecha de nacimiento del Directivo");
                     DateTime fechaIngresoDirectivo = ServValidac.PedirFechaNac("Ingrese fecha de ingreso del Directivo");
                     int legajoDirectivo = ServValidac.PedirInt("Ingrese legajo del Directivo");
-                    Empleado empleado = new Directivo(nombreDirectivo, apellidoDirectivo, fechanacDirectivo, fechaIngresoDirectivo, legajoDirectivo);
+                    double bruto = ServValidac.PedirDouble("Ingrese remuneracion bruta");
+                    Empleado empleado = new Directivo(nombreDirectivo, apellidoDirectivo, fechanacDirectivo, fechaIngresoDirectivo, legajoDirectivo, bruto);
                     ValidoExcepciones(facultad, empleado);
 
                 }

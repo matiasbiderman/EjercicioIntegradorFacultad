@@ -10,8 +10,8 @@ namespace FacultadLibreria
     {
         private string _apodo;
 
-        public Bedel(string nombre, string apodo, string apellido, DateTime fechaNac, DateTime fechaIngreso, int legajo) :
-           base(nombre, apellido, fechaNac, fechaIngreso, legajo)
+        public Bedel(string nombre, string apodo, string apellido, DateTime fechaNac, DateTime fechaIngreso, int legajo, double bruto) :
+           base(nombre, apellido, fechaNac, fechaIngreso, legajo, bruto)
         {
             this._apodo = apodo;
         }

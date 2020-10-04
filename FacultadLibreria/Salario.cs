@@ -13,7 +13,7 @@ namespace FacultadLibreria
         private double _descuentos;
         private DateTime _fecha;
 
-        public Salario(double bruto, string transferencia, double descuentos, DateTime fechasalario)
+        public Salario(double bruto)
         {
             this._bruto = bruto;
             this._descuentos = 0.17 * bruto;

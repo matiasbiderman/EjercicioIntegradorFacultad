@@ -42,15 +42,33 @@ namespace EjercicioFacultad
             return valor;
         }
 
-            public static DateTime PedirFechaNac(string mensaje)
+        public static double PedirDouble(string mensaje)
+        {
+            double valor;
+            Console.WriteLine(mensaje);
+            do
             {
-                DateTime fecha;
-                do
+                if (!double.TryParse(Console.ReadLine(), out valor))
                 {
-                    Console.WriteLine(mensaje);
+                    valor = -1;
                 }
-                while (!DateTime.TryParse(Console.ReadLine(), out fecha));
-                return fecha;
+                if (valor < 0)
+                {
+                    Console.WriteLine("ingrese una opcion valida");
+                }
+            } while (valor < 0);
+
+            return valor;
+        }
+        public static DateTime PedirFechaNac(string mensaje)
+        {
+            DateTime fecha;
+            do
+            {
+                Console.WriteLine(mensaje);
             }
+            while (!DateTime.TryParse(Console.ReadLine(), out fecha));
+            return fecha;
+        }
     }
 }
